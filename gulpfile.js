@@ -1,15 +1,13 @@
-// tranforma archivos jade a html
+// install dependencias encontradas en bower.json o package.json
 
-var gulp = require('gulp');
-var jade = require('gulp-jade');
+var install = require("gulp-install"),
+       gulp = require('gulp');
 
-gulp.task('jade', function() {
-  
-
-  gulp.src('./app/source/templates/*.jade')
-    .pipe(jade())
-    .pipe(gulp.dest('./dist/jadeAhtml/'))
+gulp.task('install', function(){
+  gulp.src(['./bower.json', './package.json'])
+     .pipe(install());
 });
 
 
-   gulp.task('default',['jade']);
+
+   gulp.task('default',['install']);
