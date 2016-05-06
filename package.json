@@ -30,6 +30,7 @@
     "gulp-safe": "^0.2.4",
     "gulp-sequence": "^0.4.5",
     "gulp-spritesmith": "0.0.2",
+    "gulp-storage": "^1.0.6",
     "gulp-uglify": "^1.5.3",
     "gulp-util": "^3.0.7",
     "gulp-zip": "^3.2.0",

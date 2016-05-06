@@ -1,0 +1,26 @@
+{
+  "myStorage": {
+    "usuarios": [
+      {
+        "nombre": "carlos",
+        "edad": 23,
+        "direccion": "calle 3"
+      },
+      {
+        "nombre": "sergio",
+        "edad": 33,
+        "direccion": "calle 10"
+      },
+      {
+        "nombre": "andres",
+        "edad": 66,
+        "direccion": "calle 38"
+      },
+      {
+        "nombre": "miguel",
+        "edad": 21,
+        "direccion": "calle 31"
+      }
+    ]
+  }
+}
