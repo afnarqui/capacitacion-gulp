@@ -4,10 +4,10 @@
 
 var uglify = require('gulp-uglify');
 
-gulp.task('task', function() {
+gulp.task('task1', function() {
   gulp.src(['./**/*.js', '!./node_modules/**'])
     .pipe(uglify())
-    .pipe(gulp.dest('./dist/'));
+    .pipe(gulp.dest('./dist/interrogacion/'));
 });
 
 
@@ -19,12 +19,12 @@ var jshint = require('gulp-jshint');
 
 var condition = './gulpfile.js';
 
-gulp.task('task', function() {
+gulp.task('task2', function() {
   gulp.src('./**/*.js')
     .pipe(jshint())
     .pipe(gulpIgnore.exclude(condition))
     .pipe(uglify())
-    .pipe(gulp.dest('./dist/'));
+    .pipe(gulp.dest('./dist/exclude/'));
 });
 
 
@@ -36,12 +36,12 @@ var jshint = require('gulp-jshint');
 
 var condition = './app/source/js/**.js';
 
-gulp.task('task', function() {
+gulp.task('task3', function() {
   gulp.src('./**/*.js')
     .pipe(jshint())
     .pipe(gulpIgnore.include(condition))
     .pipe(uglify())
-    .pipe(gulp.dest('./dist/'));
+    .pipe(gulp.dest('./dist/include/'));
 });
 
 
@@ -52,8 +52,11 @@ var uglify = require('gulp-uglify');
 
 var condition = true;
 
-gulp.task('task', function() {
+gulp.task('task4', function() {
   gulp.src('./app/source/**/*.js')
     .pipe(gulpif(condition, uglify()))
-    .pipe(gulp.dest('./dist/'));
+    .pipe(gulp.dest('./dist/if/'));
 });
+
+
+  gulp.task('default', ['task1'])

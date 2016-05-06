@@ -1,0 +1,1 @@
+var saludo;saludo=function(a){return"hola "+a};
