@@ -1,35 +1,26 @@
-// crea un back up 
+// comprimir y descomprimir archivos con .zip
 // 
-// 
-// despues de crear el back up usar el 
-// plugin de eliminar y borrar la carpeta vacia
-// que queda es un error del plugin
+// el descomprimir sirve para AR, TAR.BZ2, TAR.GZ and ZIP archives
 
 var gulp = require('gulp'),
-  safe = require('gulp-safe'),
-  del = require('del');
- 
-gulp.task('backup', function() {
-  var dest;
- 
-  dest = "./";
- 
-  return gulp.src("./app/source/gulpfiles/")
-    .pipe(safe(dest))
-    .pipe(gulp.dest(dest));
+decompress = require('gulp-decompress'),
+      zip = require('gulp-zip');
+
+gulp.task('zip', () => {
+    return gulp.src('./app/source/js/*.js')
+        .pipe(zip('archive.zip'))
+        .pipe(gulp.dest('./app/production/zip/'));
 });
 
 
-//delete dir and files
-
-
-gulp.task('clean:gulpfiles', function () {
-  return del([
-    './gulpfiles'
-  ]);
+ 
+gulp.task('unzip', function () {
+  return gulp.src('./app/production/zip/*.{tar,tar.bz2,tar.gz,zip}')
+    .pipe(decompress({strip: 1}))
+    .pipe(gulp.dest('./app/production/unzip/'));
 });
 
 
-gulp.task('default', ['backup'], function(){
-    gulp.start('clean:gulpfiles');
+gulp.task('default', ['zip'], function(){
+    gulp.start('unzip');
 });
