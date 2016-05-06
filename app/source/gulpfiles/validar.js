@@ -1,4 +1,6 @@
 // valida los archivos js
+// 
+//  npm install --save-dev jshint gulp-jshint
 
 var notify = require('gulp-notify'),
     jshint = require('gulp-jshint');

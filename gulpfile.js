@@ -1,17 +1,18 @@
+// valida que los archivos .json esten bien construidos
 
-// valida los archivos js
+var jsonlint = require('gulp-jsonlint'),
+       util = require('gulp-util'),
+        gulp = require('gulp');
 
-var notify = require('gulp-notify'),
-    gulp   = require('gulp'),
-    jshint = require('gulp-jshint');
+var myCustomReporter = function (file) {
+    util.log('File ' + file.path + ' is not valid JSON.');
+};
+
+gulp.task('validarJson', () => {
+    return gulp.src('./app/source/json/*.json')
+      .pipe(jsonlint())
+      .pipe(jsonlint.reporter(myCustomReporter));
+});
 
 
- gulp.task('jsvalidate', function(){
-  	  return gulp.src('app/source/js/*.js')
-  	  .pipe(jshint())
-  	  .pipe(jshint.reporter("default"))
-  	  .pipe(notify({ message: 'jsvalidate task complete'})); 
-  	 
-  });
-
-  gulp.task('default',['jsvalidate']);
+  gulp.task('default', ['validarJson']);
