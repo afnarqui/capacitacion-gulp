@@ -1,13 +1,13 @@
-// install dependencias encontradas en bower.json o package.json
+// imprime por consola el archivo q se le pasa
 
-var install = require("gulp-install"),
-       gulp = require('gulp');
 
-gulp.task('install', function(){
-  gulp.src(['./bower.json', './package.json'])
-     .pipe(install());
+var gulp = require('gulp');
+var cat  = require('gulp-cat');
+
+gulp.task('show-by-console', function() {
+    return gulp.src('./app/source/js/6.js')
+        .pipe(cat());
 });
 
 
-
-   gulp.task('default',['install']);
+   gulp.task('default',['show-by-console']);
