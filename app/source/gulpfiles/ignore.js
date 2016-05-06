@@ -45,7 +45,7 @@ gulp.task('task', function() {
 });
 
 
-//Conditionally filter content, include everything down-stream Condition
+//Conditionally filter content, include everything if Condition true
 
 var gulpif = require('gulp-if');
 var uglify = require('gulp-uglify');

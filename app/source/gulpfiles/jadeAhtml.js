@@ -1,3 +1,6 @@
+// tranforma archivos jade a html
+
+var gulp = require('gulp');
 var jade = require('gulp-jade');
 
 gulp.task('templates', function() {
