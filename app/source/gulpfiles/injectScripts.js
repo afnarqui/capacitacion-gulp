@@ -11,5 +11,6 @@ gulp.task('inject', function () {
   var sources = gulp.src(['./app/source/js/*.js'], {read: false});
 
   return target.pipe(inject(sources))
-    .pipe(gulp.dest('./app/source/templates/'));
+    .pipe(gulp.dest('./app/source/templates/'))
+    .pipe(notify({ message: 'inject task complete' })); 
 });

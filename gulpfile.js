@@ -1,66 +1,20 @@
-//Include or exclude gulp files from the stream based on a condition
-//Exclude things from entering the stream
 
+// inyecta condigo js o css en cualquier pag html, jade, 
+// jsx , less, slm, haml and sass / scss
 
-var uglify     = require('gulp-uglify'),
-    gulp       = require('gulp'),
-    gulpif     = require('gulp-if'),
-    uglify     = require('gulp-uglify'),
-    gulpIgnore = require('gulp-ignore'),
-    uglify     = require('gulp-uglify'),
-    jshint     = require('gulp-jshint'),
-    gulpIgnore = require('gulp-ignore'),
-    uglify     = require('gulp-uglify'),
-    concat     = require('gulp-concat'),
-    rename     = require('gulp-rename')
-    jshint     = require('gulp-jshint');
+var gulp = require('gulp');
+  inject = require('gulp-inject'),
+  notify = require('gulp-notify');
 
+gulp.task('inject', function () {
+  var target = gulp.src('./app/source/templates/index.html');
+  // It's not necessary to read the files (will speed up things), we're only after their paths:
+  var sources = gulp.src(['./app/source/js/*.js', './app/source/styles/*.css'], {read: false});
 
-
-gulp.task('task1', function() {
-  gulp.src(['./app/source/js/*.js', '!./app/source/js/5.js'])
-    .pipe(uglify())
-    .pipe(gulp.dest('./dist/interrogacion'));
+  return target.pipe(inject(sources))
+    .pipe(gulp.dest('./app/source/templates/'))
+    .pipe(notify({ message: 'inject task complete' })); 
 });
 
 
-//Remove things from the stream
-
-
-gulp.task('task2', function() {
-   var condition = ['1.js', '2.js'];
-
-  gulp.src('./app/source/js/*.js')
-    .pipe(jshint())
-    .pipe(gulpIgnore.exclude(condition))
-    .pipe(concat('concat.js'))
-    .pipe(rename({suffix: '.min'}))
-    .pipe(uglify())
-    .pipe(gulp.dest('./dist/exclude/'));
-});
-
-
-//Filter only matching things 
-
-gulp.task('task3', function() {
-  var condition = [ '1.js', '6.js'];
-  gulp.src('./app/source/js/*.js')
-    .pipe(jshint())
-    .pipe(gulpIgnore.include(condition))
-    .pipe(uglify())
-    .pipe(gulp.dest('./dist/include/'));
-});
-
-
-//Conditionally filter content, include everything if Condition true
-
-
-gulp.task('task4', function() {
-  var condition = true;
-  gulp.src('./app/source/js/*.js')
-    .pipe(gulpif(condition, uglify()))
-    .pipe(gulp.dest('./dist/if/'));
-});
-
-
-  gulp.task('default', ['task4']);
+   gulp.task('default',['inject']);
