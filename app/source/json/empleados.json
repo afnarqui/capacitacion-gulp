@@ -1,0 +1,18 @@
+{
+ "uno": {
+  "nombre": "carlos",
+  "apellido": "suarez",
+  "edad": 34
+ },
+ "dos": {
+  "nombre": "cesar",
+  "apellido": "ramirez",
+  "edad": 21
+ },
+ "tres": {
+  "nombre": "cesar",
+  "apellido": "ramirez",
+  "edad": 21
+ },
+ "version": "1.2.3"
+}

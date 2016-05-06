@@ -1,15 +1,21 @@
+// edita el json pasandole todo lo escrito en el object
+// pasado a jeditor
 
-//delete dir and files
-//
-//crear carpeta y archivos para ver implementacion
+var jeditor = require("gulp-json-editor"),
+       gulp = require('gulp');
 
-var gulp = require('gulp');
-var del = require('del');
+gulp.task('editor', function(){
+    return gulp.src("./app/source/json/empleados.json")
+    .pipe(jeditor({
+      "tres": {
+        "nombre": "cesar",
+        "apellido": "ramirez",
+        "edad": 21
+      },
+      'version': '1.2.3'
 
-gulp.task('clean:build', function () {
-  return del([
-    'app/source/paraeliminar/'
-  ]);
+    }))
+    .pipe(gulp.dest("./app/source/json/"));
 });
 
-gulp.task('default', ['clean:build']);
+ gulp.task('default', ['editor']);
