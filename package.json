@@ -1,0 +1,15 @@
+{
+  "name": "capacitacion-gulp",
+  "version": "1.0.0",
+  "description": "Proyecto para capacitacion en gulp",
+  "main": "gulpfile.js",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  },
+  "scripts": {
+    "test": "gulp"
+  },
+  "author": "julio cesar naranjo",
+  "license": "ISC"
+}
