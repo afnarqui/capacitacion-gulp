@@ -1,6 +1,9 @@
 
 // inyecta condigo js o css en cualquier pag html, jade, 
 // jsx , less, slm, haml and sass / scss
+// 
+// se coloca  <!-- inject:js -->  o  <!-- inject:css --> segun el caso  
+// 
 
 var gulp = require('gulp');
 var inject = require('gulp-inject');
