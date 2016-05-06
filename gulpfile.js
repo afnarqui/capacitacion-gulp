@@ -1,13 +1,15 @@
 
-//comprime imagenes
+//delete dir and files
+//
+//crear carpeta y archivos para ver implementacion
 
 var gulp = require('gulp');
-var imagemin = require('gulp-imagemin');
+var del = require('del');
 
-gulp.task('imagenes', function () {
-    return gulp.src(['./app/source/imagenes/*.*'])
-        .pipe(imagemin())
-        .pipe(gulp.dest('./app/production/imagenesmin/'));
+gulp.task('clean:build', function () {
+  return del([
+    'app/source/paraeliminar/'
+  ]);
 });
 
-gulp.task('default',['imagenes']);
+gulp.task('default', ['clean:build']);
