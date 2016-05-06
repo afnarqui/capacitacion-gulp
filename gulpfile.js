@@ -1,19 +1,20 @@
-// minifica archivos .js
+//minificar html
 
 var gulp = require('gulp'),
-  uglify = require('gulp-uglify'),
+  concat = require('gulp-concat'),
   rename = require('gulp-rename'),
-  notify = require('gulp-notify'); 
+  notify = require('gulp-notify'),
+  minifyhtml = require('gulp-minify-html');   
 
 
-   gulp.task('compress', function(){
-      return gulp.src('app/production/concatjs/*.js')
+    gulp.task('minifyhtml', function(){
+      return gulp.src('app/source/templates/*.html')
+      .pipe(concat('concat.html'))
+      .pipe(gulp.dest('app/production/concathtml/'))
       .pipe(rename({suffix: '.min'}))
-      .pipe(uglify())
-      .pipe(gulp.dest("app/production/minjs/"))
-      .pipe(notify({ message: 'compress task complete' })); 
-     
-  });
+      .pipe(minifyhtml())
+      .pipe(gulp.dest('app/production/htmlmin/'))
+      .pipe(notify({ message: 'minifyhtml task complete'}))
+    });
 
-
-    gulp.task('default',['compress']);
+     gulp.task('default',['minifyhtml']);
