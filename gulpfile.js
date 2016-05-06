@@ -1,25 +1,17 @@
 
-// crea servicio con la ruta especificada,livereload,watch y puerto
+// valida los archivos js
 
-var gulp = require('gulp'),
- connect = require('gulp-connect');
+var notify = require('gulp-notify'),
+    gulp   = require('gulp'),
+    jshint = require('gulp-jshint');
 
 
- gulp.task('connect3', function(){
-  connect.server({
-    root: 'app/source/templates/',
-    port: 3333,
-    livereload: true
+ gulp.task('jsvalidate', function(){
+  	  return gulp.src('app/source/js/*.js')
+  	  .pipe(jshint())
+  	  .pipe(jshint.reporter("default"))
+  	  .pipe(notify({ message: 'jsvalidate task complete'})); 
+  	 
   });
- });
 
- gulp.task('reloadHtml', function(){
-  gulp.src('./app/source/templates/*.html')
-  .pipe(connect.reload());
- });
-
- gulp.task('watch', function(){
-  gulp.watch(['./app/source/templates/*.html'],['reloadHtml']);
- });
-
- gulp.task('default',['connect3','watch']);
+  gulp.task('default',['jsvalidate']);
