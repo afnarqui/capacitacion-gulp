@@ -1,3 +1,5 @@
+// abrir archivos pasandole la aplicacion
+
 var os = require('os');
 var gulp = require('gulp');
 var open = require('gulp-open');
