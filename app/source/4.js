@@ -1,0 +1,1 @@
+const saludo = (nombre,apellido)  => "hola " + nombre + " " + apellido;
