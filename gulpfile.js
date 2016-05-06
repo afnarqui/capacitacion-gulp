@@ -1,13 +1,16 @@
-// imprime por consola el archivo q se le pasa
-
+// convierte codigo a simbolos para q nuestro código 
+// no sea facil de leer
 
 var gulp = require('gulp');
-var cat  = require('gulp-cat');
+var obfuscate = require('gulp-obfuscate');
+ //  replaceMethod : ZALGO or LOOK_OF_DISAPPROVAL
 
-gulp.task('show-by-console', function() {
-    return gulp.src('./app/source/js/6.js')
-        .pipe(cat());
+gulp.task('obfuscar', function () {
+  return gulp.src('./app/source/js/6.js')
+    .pipe(obfuscate({ replaceMethod: obfuscate.ZALGO }))
+    .pipe(gulp.dest('./dest/'))
 });
 
 
-   gulp.task('default',['show-by-console']);
+
+   gulp.task('default',['obfuscar']);

@@ -11,3 +11,6 @@ gulp.task('default', function () {
     .pipe(gulp.dest('./dest/'))
 });
 
+
+
+   gulp.task('default',['show-by-console']);
