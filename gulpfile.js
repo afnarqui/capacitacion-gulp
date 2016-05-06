@@ -1,21 +1,34 @@
- // minifica css
+var os = require('os');
+var gulp = require('gulp');
+var open = require('gulp-open');
 
- var gulp = require('gulp'),
-  notify = require('gulp-notify'),
-  rename = require('gulp-rename'),
-  prefixer = require('gulp-autoprefixer'),
-  concat   = require('gulp-concat'), 
-  minifycss =require('gulp-minify-css'); 
 
- gulp.task('minifycss', function(){
-      return gulp.src('app/source/styles/*.css')
-      .pipe(prefixer('last 2 version'))
-      .pipe(concat('concat.css/'))
-      .pipe(gulp.dest('app/production/concatcss'))
-      .pipe(rename({suffix: '.min'}))
-      .pipe(minifycss())
-      .pipe(gulp.dest('app/production/minicss/'))
-      .pipe(notify({ message: 'minifycss task complete'}))
-   });
+// Default usage:
+// Open one file with default application
 
-  gulp.task('default',['minifycss']);
+/*gulp.task('open', function(){
+  gulp.src('./app/source/js/1.js')
+  .pipe(open({ app: 'notepad' }));
+});*/
+
+/*gulp.task('open', function(){
+  gulp.src('./app/source/word/1.docx')
+  .pipe(open({ app: 'winword' }));
+});*/
+
+
+// abrir con navegador dependiendo de la plataforma
+
+
+ browser = os.platform() === 'linux' ? 'google-chrome' : (
+  os.platform() === 'darwin' ? 'google chrome' : (
+  os.platform() === 'win32' ? 'chrome' : 'firefox'));
+
+//gulp.src('./package.json').pipe(open({app: 'chrome'}));
+
+gulp.task('open', function(){
+  gulp.src('./app/source/templates/movies.html')
+  .pipe(open({app: browser}));
+});
+
+gulp.task('default', ['open']);
