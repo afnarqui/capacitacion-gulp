@@ -1,20 +1,21 @@
-//minificar html
+ // minifica css
 
-var gulp = require('gulp'),
-  concat = require('gulp-concat'),
-  rename = require('gulp-rename'),
+ var gulp = require('gulp'),
   notify = require('gulp-notify'),
-  minifyhtml = require('gulp-minify-html');   
+  rename = require('gulp-rename'),
+  prefixer = require('gulp-autoprefixer'),
+  concat   = require('gulp-concat'), 
+  minifycss =require('gulp-minify-css'); 
 
-
-    gulp.task('minifyhtml', function(){
-      return gulp.src('app/source/templates/*.html')
-      .pipe(concat('concat.html'))
-      .pipe(gulp.dest('app/production/concathtml/'))
+ gulp.task('minifycss', function(){
+      return gulp.src('app/source/styles/*.css')
+      .pipe(prefixer('last 2 version'))
+      .pipe(concat('concat.css/'))
+      .pipe(gulp.dest('app/production/concatcss'))
       .pipe(rename({suffix: '.min'}))
-      .pipe(minifyhtml())
-      .pipe(gulp.dest('app/production/htmlmin/'))
-      .pipe(notify({ message: 'minifyhtml task complete'}))
-    });
+      .pipe(minifycss())
+      .pipe(gulp.dest('app/production/minicss/'))
+      .pipe(notify({ message: 'minifycss task complete'}))
+   });
 
-     gulp.task('default',['minifyhtml']);
+  gulp.task('default',['minifycss']);

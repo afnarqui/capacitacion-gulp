@@ -8,5 +8,9 @@ h2{
 }
 
 a{
-	color: violet;
+	transition: 200ms all linear;
+	  userSelect: none;
+	  boxSizing: border-box;
+	  display: flex;
+	  color: violet;
 }

@@ -5,9 +5,11 @@ body{
 }
 
 span{
-	margin-top: 10px;
-	color: green;
-	background-color: blue;
+	  transition: 200ms all linear;
+	  userSelect: none;
+	  boxSizing: border-box;
+	  display: flex;
+	  color: blue;
 }
 
 div{
@@ -16,9 +18,11 @@ div{
 	height: 300px;
 }
 ul{
-	margin: 0px;
-	padding: 0px;
-	border: 0px;
+	transition: 200ms all linear;
+	  userSelect: none;
+	  boxSizing: border-box;
+	  display: flex;
+	  color: green;
 }
 
 li{
