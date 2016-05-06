@@ -1,20 +1,49 @@
-//  npm install --save-dev gulp-babel babel-preset-es2015
-//  
-//  convierte codigo es 2016 a 2015
-//  
-//  
-
-var gulp = require('gulp'),
-   babel = require('gulp-babel');
-
-
-gulp.task('babel', () => {
-  return gulp.src('./app/source/4.js')
-    .pipe(babel({
-      presets: ['es2015']
-    }))
-    .pipe(gulp.dest('dist/2016A2015'));
+ var gulp = require('gulp'),
+  plugins = require('gulp-load-plugins')(),
+    production = plugins.util.env._[0] === 'build';
+ 
+var paths = {
+    css: {
+        src: [ './src/less/**.*' ],
+        dist: './assets/css/'
+    },
+    js: {
+        src: [ './src/js/**.*' ],
+        dist: './assets/js/'
+    }
+};
+ 
+gulp.task('css', function() {
+    gulp.src( paths.css.src )
+        .pipe( plugins.if(!production, plugins.sourcemaps.init()) )
+        .pipe( plugins.less() )
+        .pipe( plugins.autoprefixer({
+            browsers: ['last 3 versions', '> 1%', 'ie >= 8'],
+            cascade: false
+        }) )
+        .pipe( plugins.combineMediaQueries({ log: false }) )
+        .pipe( plugins.concat('style.css') )
+        .pipe( plugins.if(production, plugins.csso()) )
+        .pipe( plugins.if(!production, plugins.sourcemaps.write()) )
+        .pipe( gulp.dest( paths.css.dist ) )
+        .on('error', plugins.util.log);
 });
-
-
-gulp.task('default', ['babel']);
+ 
+gulp.task('js', function() {
+    gulp.src( paths.js.src )
+        .pipe( plugins.if(!production, plugins.sourcemaps.init()) )
+        .pipe( plugins.concat('app.js') )
+        .pipe( plugins.if(production, plugins.uglify()) )
+        .pipe( plugins.if(!production, plugins.sourcemaps.write()) )
+        .pipe( gulp.dest(paths.js.dist) )
+        .on('error', plugins.util.log);
+});
+ 
+gulp.task('watch', function() {
+    gulp.watch(paths.css.src, ['css']);
+    gulp.watch(paths.js.src, ['js']);
+});
+ 
+gulp.task('build', ['css', 'js']);
+ 
+gulp.task('default', ['build', 'watch']);
