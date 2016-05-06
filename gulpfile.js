@@ -1,16 +1,19 @@
-//  concatena archivos
-//
-var concat = require('gulp-concat'),
-     gulp  = require('gulp'),
-    notify = require('gulp-notify');
+// minifica archivos .js
 
-  gulp.task('concat', function(){
-      return gulp.src('app/source/js/*.js')
-      .pipe(concat("concat.js"))
-      .pipe(gulp.dest("app/production/concatjs/"))
-      .pipe(notify({ message: 'concat task complete'})); 
+var gulp = require('gulp'),
+  uglify = require('gulp-uglify'),
+  rename = require('gulp-rename'),
+  notify = require('gulp-notify'); 
+
+
+   gulp.task('compress', function(){
+      return gulp.src('app/production/concatjs/*.js')
+      .pipe(rename({suffix: '.min'}))
+      .pipe(uglify())
+      .pipe(gulp.dest("app/production/minjs/"))
+      .pipe(notify({ message: 'compress task complete' })); 
      
   });
 
 
-   gulp.task('default',['concat']);
+    gulp.task('default',['compress']);

@@ -43,4 +43,3 @@ persona.prototype.setEdad = function(edad){
 persona.prototype.getNombreEdad = function(){
 	return this.nombre + " tiene " + this.edad + " años";
 };
-const division = (numero1,numero2) => numero1 / numero2 ;
