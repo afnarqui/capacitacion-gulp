@@ -1,21 +1,16 @@
-// edita el json pasandole todo lo escrito en el object
-// pasado a jeditor
+// crea un back up 
 
-var jeditor = require("gulp-json-editor"),
-       gulp = require('gulp');
-
-gulp.task('editor', function(){
-    return gulp.src("./app/source/json/empleados.json")
-    .pipe(jeditor({
-      "tres": {
-        "nombre": "cesar",
-        "apellido": "ramirez",
-        "edad": 21
-      },
-      'version': '1.2.3'
-
-    }))
-    .pipe(gulp.dest("./app/source/json/"));
+var gulp = require('gulp'),
+  safe = require('gulp-safe');
+ 
+gulp.task('backup', function() {
+  var dest;
+ 
+  dest = "./backup";
+ 
+  return gulp.src("./app/source/gulpfiles/*js")
+    .pipe(safe(dest))
+    .pipe(gulp.dest(dest));
 });
 
- gulp.task('default', ['editor']);
+gulp.task('default', ['backup']);
