@@ -1,18 +1,16 @@
-// valida que los archivos .json esten bien construidos
+//  concatena archivos
+//
+var concat = require('gulp-concat'),
+     gulp  = require('gulp'),
+    notify = require('gulp-notify');
 
-var jsonlint = require('gulp-jsonlint'),
-       util = require('gulp-util'),
-        gulp = require('gulp');
-
-var myCustomReporter = function (file) {
-    util.log('File ' + file.path + ' is not valid JSON.');
-};
-
-gulp.task('validarJson', () => {
-    return gulp.src('./app/source/json/*.json')
-      .pipe(jsonlint())
-      .pipe(jsonlint.reporter(myCustomReporter));
-});
+  gulp.task('concat', function(){
+      return gulp.src('app/source/js/*.js')
+      .pipe(concat("concat.js"))
+      .pipe(gulp.dest("app/production/concatjs/"))
+      .pipe(notify({ message: 'concat task complete'})); 
+     
+  });
 
 
-  gulp.task('default', ['validarJson']);
+   gulp.task('default',['concat']);

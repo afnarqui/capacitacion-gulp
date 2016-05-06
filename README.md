@@ -6,3 +6,5 @@
 - creamos readme.md
 
 1- se crean carpetas y archivo gulpfile.js
+2- se instalan las dependencias necesarias para cada tarea 
+<-- npm install --save-dev [dependencia]

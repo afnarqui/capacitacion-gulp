@@ -7,7 +7,7 @@ var myCustomReporter = function (file) {
 };
 
 gulp.task('validarJson', () => {
-    gulp.src('./app/*.json')
+    return gulp.src('./app/*.json')
     .pipe(jsonlint())
     .pipe(jsonlint.reporter(myCustomReporter));
 });
