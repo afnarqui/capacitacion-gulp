@@ -1,6 +1,6 @@
  var gulp = require('gulp'),
   plugins = require('gulp-load-plugins')(),
-    production = plugins.util.env._[0] === 'build';
+  production = plugins.util.env._[0] === 'build';
  
 var paths = {
     css: {
@@ -38,6 +38,11 @@ gulp.task('js', function() {
         .pipe( gulp.dest(paths.js.dist) )
         .on('error', plugins.util.log);
 });
+ 
+ 
+ 
+ 
+ 
  
 gulp.task('watch', function() {
     gulp.watch(paths.css.src, ['css']);
